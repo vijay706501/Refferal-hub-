@@ -144,7 +144,20 @@ margin-top:30px;
 
 </div>
 </section>
+<section class="section" id="adminPanel" style="display:none;">
+<h2 class="section-title">Admin Panel</h2>
 
+<input type="text" id="appName" placeholder="App Name"><br><br>
+
+<input type="text" id="bonus" placeholder="Bonus"><br><br>
+
+<input type="text" id="category" placeholder="Category"><br><br>
+
+<input type="text" id="link" placeholder="Referral Link"><br><br>
+
+<button id="addOfferBtn">Add Offer</button>
+
+</section>
 <footer>
 © 2026 Referral Hub
 </footer>
@@ -155,9 +168,10 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebas
 import {
 getFirestore,
 collection,
-getDocs
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
-import {
+getDocs,
+addDoc
+}
+from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 getAuth,
 createUserWithEmailAndPassword,
 signInWithEmailAndPassword,
@@ -204,7 +218,9 @@ signOut(auth);
 
 onAuthStateChanged(auth,(user)=>{
 
-if(user){
+if(user.email === "vijaylodhi301@gmail.com"){
+document.getElementById("adminPanel").style.display = "block";
+}
 document.getElementById("userName").innerText =
 "Welcome " + user.email;
 
@@ -212,7 +228,7 @@ document.getElementById("logoutBtn").style.display =
 "inline-block";
 
 }else{
-document.getElementById("userName").innerText = "";
+document.getElementById("adminpanel").innerText = "";
 document.getElementById("logoutBtn").style.display =
 "none";
 }
@@ -249,6 +265,32 @@ Join Now
 }
 
 loadOffers();
+  document.getElementById("addOfferBtn").onclick =
+async () => {
+
+await addDoc(collection(db,"Offer"),{
+
+AppName:
+document.getElementById("appName").value,
+
+Bonus:
+document.getElementById("bonus").value,
+
+Category:
+document.getElementById("category").value,
+
+Link:
+document.getElementById("link").value,
+
+Status:"Active"
+
+});
+
+alert("Offer Added Successfully");
+
+loadOffers();
+
+};
 </script>
 
 </body>
