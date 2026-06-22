@@ -18,6 +18,9 @@ background:#f5f7fb;
 }
 
 nav{
+  <button id="loginBtn">Login</button>
+<button id="logoutBtn" style="display:none;">Logout</button>
+<span id="userName"></span>
 background:#4f46e5;
 color:white;
 display:flex;
@@ -280,7 +283,78 @@ Referral Hub helps users discover trusted referral and affiliate opportunities f
 <button>Send Message</button>
 </div>
 </section>
+<script type="module">
 
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+
+import {
+getAuth,
+createUserWithEmailAndPassword,
+signInWithEmailAndPassword,
+onAuthStateChanged,
+signOut
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCYVw59Fb3Ppx44V7wigjkb_rGDIxx_dOk",
+  authDomain: "refferal-hub-89b90.firebaseapp.com",
+  projectId: "refferal-hub-89b90",
+  storageBucket: "refferal-hub-89b90.firebasestorage.app",
+  messagingSenderId: "1055946062854",
+  appId: "1:1055946062854:web:2be7e32ad6d6cf35c79787",
+  measurementId: "G-YH73SN8BJR"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+document.getElementById("loginBtn").onclick = async () => {
+
+const email = prompt("Email");
+const password = prompt("Password");
+
+try{
+await signInWithEmailAndPassword(auth,email,password);
+alert("Login Successful");
+}catch(e){
+
+try{
+await createUserWithEmailAndPassword(auth,email,password);
+alert("Account Created");
+}catch(err){
+alert(err.message);
+}
+
+}
+
+};
+
+document.getElementById("logoutBtn").onclick = () =>{
+signOut(auth);
+};
+
+onAuthStateChanged(auth,(user)=>{
+
+if(user){
+
+document.getElementById("userName").innerText =
+"Welcome " + user.email;
+
+document.getElementById("logoutBtn").style.display =
+"inline-block";
+
+}else{
+
+document.getElementById("userName").innerText = "";
+
+document.getElementById("logoutBtn").style.display =
+"none";
+
+}
+
+});
+
+</script>
 <footer>
 © 2026 Referral Hub | All Rights Reserved
 </footer>
