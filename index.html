@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Referral Hub</title>
 
 <style>
 body{
-font-family:Arial,sans-serif;
-background:#f5f5f5;
 margin:0;
-padding:0;
+font-family:Arial,sans-serif;
+background:#f4f6f9;
 }
 
-.header{
+header{
 background:#4f46e5;
 color:white;
 padding:20px;
@@ -21,69 +21,86 @@ font-size:28px;
 font-weight:bold;
 }
 
-.card{
-background:white;
-margin:15px;
-padding:15px;
-border-radius:15px;
-box-shadow:0 2px 10px rgba(0,0,0,0.1);
+.hero{
+padding:40px 20px;
+text-align:center;
 }
 
-.bonus{
-color:green;
-font-size:22px;
-font-weight:bold;
+.hero h1{
+font-size:32px;
+}
+
+.hero p{
+color:#555;
 }
 
 .btn{
-display:block;
 background:#4f46e5;
 color:white;
-text-decoration:none;
-padding:12px;
-text-align:center;
+padding:12px 20px;
+border:none;
 border-radius:10px;
+text-decoration:none;
+display:inline-block;
 margin-top:10px;
 }
-.logo{
-  width:80px;
-  height:80px;
-  display:block;
-  margin:0 auto 15px;
+
+.section{
+padding:20px;
+}
+
+.card{
+background:white;
+padding:20px;
+margin:15px;
+border-radius:15px;
+box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+
+footer{
+background:#111827;
+color:white;
+padding:20px;
+text-align:center;
+margin-top:20px;
 }
 </style>
-
 </head>
 
 <body>
 
-<div class="header">
+<header>
 Referral Hub
+</header>
+
+<div class="hero">
+<h1>Earn Through Referrals</h1>
+<p>Join top referral programs and earn rewards.</p>
+<a href="#" class="btn">Get Started</a>
 </div>
 
+<div class="section">
+
 <div class="card">
-<img src="https://seeklogo.com/images/A/angel-one-logo-0B4C4F0A2B-seeklogo.com.png" class="logo">
 <h2>Angel One</h2>
-<p class="bonus">₹500 Bonus</p>
-<a class="btn" onclick="window.open('https://angel-one.onelink.me/Wjgr/ocbu570n','_blank')">
-  Join Now
-</a>
+<p>Earn up to ₹500 per referral.</p>
 </div>
 
 <div class="card">
-  
-<img src="UPSTOX_LOGO_LINK" class="logo">
 <h2>Upstox</h2>
-<p class="bonus">₹300 Bonus</p>
-<a class="btn" href="#">Join Now</a>
+<p>Earn rewards for successful referrals.</p>
 </div>
 
 <div class="card">
-<img src="GROWW_LOGO_LINK" class="logo">
 <h2>Groww</h2>
-<p class="bonus">₹100 Bonus</p>
-<a class="btn" href="#">Join Now</a>
+<p>Invite friends and earn bonuses.</p>
 </div>
+
+</div>
+
+<footer>
+© 2026 Referral Hub
+</footer>
 
 </body>
 </html>
