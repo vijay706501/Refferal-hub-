@@ -124,9 +124,7 @@ margin-top:30px;
 <section class="section">
 <h2 class="section-title">Featured Offers</h2>
 
-<div class="cards">
-
-<div class="card">
+<div class="cards" id="offersContainer"></div>
 <h3>Angel One</h3>
 <p>₹500 Bonus</p>
 <a href="#" class="join-btn">Join Now</a>
@@ -154,7 +152,11 @@ margin-top:30px;
 <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-
+import {
+getFirestore,
+collection,
+getDocs
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 import {
 getAuth,
 createUserWithEmailAndPassword,
@@ -174,7 +176,7 @@ appId: "1:1055946062854:web:2be7e32ad6d6cf35c79787"
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-
+const db = getFirestore(app);
 document.getElementById("loginBtn").onclick = async () => {
 
 const email = prompt("Enter Email");
@@ -216,7 +218,37 @@ document.getElementById("logoutBtn").style.display =
 }
 
 });
+async function loadOffers(){
 
+const container =
+document.getElementById("offersContainer");
+
+container.innerHTML = "";
+
+const querySnapshot =
+await getDocs(collection(db,"Offer"));
+
+querySnapshot.forEach((doc)=>{
+
+const data = doc.data();
+
+container.innerHTML += `
+<div class="card">
+<h3>${data.AppName}</h3>
+<p>₹${data.Bonus} Bonus</p>
+<a href="${data.Link}"
+target="_blank"
+class="join-btn">
+Join Now
+</a>
+</div>
+`;
+
+});
+
+}
+
+loadOffers();
 </script>
 
 </body>
